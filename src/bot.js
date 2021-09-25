@@ -1,16 +1,11 @@
 require('dotenv').config();
 
 // Require the necessary discord.js classes
-const { Client, Intents, Collection  } = require('discord.js');
+const { Client, Intents, Collection, MessageEmbed  } = require('discord.js');
 const { token } = require('G:\\Microsoft VS Code\\FirstDiscordBot\\config.json');
-
-const { MessageEmbed } = require('discord.js');
 
 const prefix = "!";
 const fs = require('fs');
-
-var XMLHttpRequest = require('xhr2');
-const Http = new XMLHttpRequest();
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS], });
@@ -43,22 +38,6 @@ client.on('message', message=>{
         client.comands.get('embed').execute(message,args, MessageEmbed);
     }
 })
-
-
-// client.on('message', (message) => {
-//     console.log(`[${client.user.tag}]: ${message.content}`);
-//     const api = `https://eun1.api.riotgames.com/tft/summoner/v1/summoners/by-name/${message}?api_key=RGAPI-d3721634-8526-436f-bfc7-aea95ae4ddb7`;
-//     Http.open("GET", api);
-//     Http.send();
-//     let chunks = [];
-//     Http.on('data', function(data){
-//         chunks.push(data);
-//     }).on('end', function(){
-//         let data = Buffer.concat(chunks);
-//         let schema = JSON.parse(data);
-//         console.log(schema.id);
-//     })
-// });
 
 // Login to Discord with your client's token
 client.login(token);
